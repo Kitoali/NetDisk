@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>修改分享</title>
+</head>
+<body>
+
+<h1>修改分享</h1>
+<form action="/updateShare" method="post">
+
+    <input type="hidden" name="id" th:value="${share.id}">
+    分享id：<output type="text" name="id" th:text="${share.id}"></output>
+    url：<output type="text" name="id" th:text="${share.url}"></output>
+    创建时间：<output type="text" name="id" th:text="${share.startime}"></output>
+    <br>
+<!--    文件名：<output type="text" name="filename" th:text="${share.filename}"></output>-->
+<!--    <br>-->
+<!--    //这里没有显示出filename,可能没有从share中提取出filename或者share中本就没有-->
+<!--    创建时间：<input type="text" name="startime" th:value="${share.startime}"> <br>-->
+    有效期：<input type="text" name="livetime" th:value="${share.livetime}"> <br>
+
+    <input type="submit" name="提交">
+
+
+</form>
+
+</body>
+</html>
+

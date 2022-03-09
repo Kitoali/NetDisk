@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生成的分享链接</title>
+<!--    <a href="share: ${shareUrl}"></a>-->
+</head>
+<body>
+<h1>分享链接</h1>
+<form action="/addShareForm">
+分享链接为：<output type="text" name="id" th:text="${share.url}"></output>
+</form>
+</body>
+</html>

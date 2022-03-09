@@ -1,0 +1,19 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>查询结果展示</title>
+</head>
+
+<body>
+<h1>查询结果展示</h1>
+
+<ul th:each="f : ${files}">
+
+    <li >
+        <img th:src="'/videos/'+${f.filename}" alt="" style="width:200px">
+        <a th:href="@{/file/download(name=${f.path})}">下载</a>
+    </li>
+</ul>
+</body>
+</html>

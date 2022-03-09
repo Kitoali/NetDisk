@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改用户数据</title>
+</head>
+<body>
+<h1>添加员工</h1>
+<form action="/update">
+    工号:<input type="text" name="id" th:value="${user.id}"><br>
+    管理员工号:<input type="text" name="adminid" th:value="${user.adminid}"><br>
+    密码:<input type="text" name="password" th:value="${user.password}"><br>
+    电话:<input type="text" name="phone" th:value="${user.phone}"><br>
+    性别:<input type="text" name="sex" th:value="${user.sex}"><br>
+    状态:<input type="text" name="state" th:value="${user.state}"><br>
+    姓名:<input type="text" name="username" th:value="${user.username}"><br>
+
+    <input type="submit" name="提交">
+</form>
+</body>
+</html>

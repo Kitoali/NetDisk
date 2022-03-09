@@ -1,0 +1,110 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>文件列表</title>
+    <style type="text/css">
+        table.gridtable {
+            font-family: verdana,arial,sans-serif;
+            font-size:20px;
+            color:#333333;
+            border-width: 1px;
+            border-color: #666666;
+            border-collapse: collapse;
+        }
+        table.gridtable th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #dedede;
+        }
+        table.gridtable td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
+        }
+        img{
+            width:200px;
+        }
+    </style>
+</head>
+<body>
+<!--    <img th:src="${imgPath}" alt="图片">-->
+<a href="/login">注销账号</a><br>
+<a href="/toChangePassword">修改密码</a>
+<h2>检索文件</h2>
+<form action="/file/find">
+    <p>通过资源名称包含的字符作为查询条件（模糊查询）</p>
+    字符输入:<input type="text" name="element" placeholder="关键词……">
+    <input type="submit" name="提交">
+</form>
+<br>
+<h2>文件上传</h2>
+<form action="/file/upload" method="post" enctype="multipart/form-data">
+    选择上传文件夹：
+    <select name="str">
+    <option th:value="1" >文件夹1</option>
+    <option th:value="2" >文件夹2</option>
+    </select>
+    <br>
+    <br>
+    <input type="file" name="file">
+    <br>
+    <br>
+    <input type="submit">
+</form>
+<h2>文件列表</h2>
+<br>
+<table class="gridtable">
+    <tr>
+        <th>文件夹</th>
+        <th>选项</th>
+    </tr>
+    <tr>
+        <td>文件夹1</td>
+        <td>
+            <a th:href="@{/file/fileFolder1}">查看</a>
+        </td>
+    </tr>
+    <tr>
+        <td>文件夹2</td>
+        <td>
+            <a th:href="@{/file/fileFolder2}">查看</a>
+        </td>
+    </tr>
+</table>
+<h2>我的分享</h2>
+<br>
+<a href="/queryShare">我的分享</a><br>
+<!--<br>-->
+<!--<table class="gridtable">-->
+
+<!--    <tr th:each="f : ${files}">-->
+<!--        <td>-->
+<!--            <img th:src="${f}" alt="" width="200px">-->
+<!--        </td>-->
+
+<!--        <td>-->
+<!--            <a th:href="@{/file/download(name=${f})}">下载</a>-->
+<!--        </td>-->
+
+<!--    </tr>-->
+<!--</table>-->
+<h2>回收站</h2>
+<br>
+<a href="/listDelete">回收站</a><br>
+<!--<h2>回收站</h2>-->
+<!--<table class="gridtable">-->
+<!--    <tr>-->
+<!--        <td>回收站</td>-->
+<!--        <td>-->
+<!--            <a th:href="@{/listDelete}">查看</a>-->
+<!--        </td>-->
+<!--    </tr>-->
+<!--</table>-->
+
+</body>
+</html>

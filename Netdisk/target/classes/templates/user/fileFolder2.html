@@ -1,0 +1,79 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>文件查看</title>
+    <style type="text/css">
+        table.gridtable {
+            font-family: verdana,arial,sans-serif;
+            font-size:20px;
+            color:#333333;
+            border-width: 1px;
+            border-color: #666666;
+            border-collapse: collapse;
+        }
+        table.gridtable th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #dedede;
+        }
+        table.gridtable td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
+        }
+        img{
+            width:200px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>文件夹2内容</h1>
+<a th:href="@{/file/flist}">返回主列表</a>
+<table class="gridtable">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>FileName</th>
+        <th>Path</th>
+        <th>Size</th>
+        <th>State</th>
+        <th>Type</th>
+        <th>User</th>
+        <th>Operation</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="file : ${fileFolder2}">
+        <td th:text="${file.id}"></td>
+        <td th:text="${file.filename}"></td>
+        <td th:text="${file.path}"></td>
+        <td th:text="${file.size}"></td>
+        <td th:text="${file.state}"></td>
+        <td th:text="${file.type}"></td>
+        <td th:text="${file.userid}"></td>
+        <td>
+            <form action="/file/move" method="get">
+                移动:
+                <select name="str1">
+                    <option th:value="${file.id}" >文件夹1</option>
+                    <input value="1" name="str2" type="hidden"></input>
+                </select>
+                <input type="submit" name="移动">
+                <a th:href="@{/file/fileFolder2File(id=${file.id})}">查看</a>
+                <a th:href="@{/addShareForm(id=${file.id})}">分享</a>
+                <a th:href="@{/file/deleteFile(id=${file.id})}">删除</a>
+                <a th:href="@{/file/download(name=${file.path})}">下载</a>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

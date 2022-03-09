@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+</head>
+<body>
+
+<h1>登录</h1>
+
+<!--启动页面/addAdministrator，在kcontroller执行添加方法-->
+
+    <!--在页面输入管理员名字、密码信息，边提交到/addAdministrator方法中-->
+
+    邮&nbsp;&nbsp;&nbsp;&nbsp;箱：<input type="text" name="username" id="username"><br>
+    密&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="password" name="password" id="password"><br>
+    <div style="display: none" id="email">
+        验证码：<input type="text" name="email" id="email1"> <button onclick="getVCode()">获取验证码</button>
+    </div>
+    <button onclick="toLogin()">提交</button>
+    <a href="/toforgetPassword">忘记密码？</a>
+
+</body>
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+    var code = "";
+    var flag = false;
+    $('#username').blur(function () {
+        $.post("isFlag", {username: $(this).val()}, function (result) {
+            if(result!="" && result == 0){
+                flag = true;
+                document.getElementById("email").style.display="";//显示
+            }
+        });
+    });
+    function getVCode(){
+        $.post("email", {emailAddress: $("#username").val()}, function (result) {
+            if(result=="邮件发送失败"){
+               alert("您的账号不支持收取验证码！");
+            }else{
+                code = result;
+            }
+        });
+    }
+    function toLogin() {
+        if($("#username").val()==""||$("#username").val()==null){
+            alert("账号不能为空！");
+            return;
+        }
+        if($("#password").val()==""||$("#password").val()==null){
+            alert("密码不能为空！");
+            return;
+        }
+        if(flag){
+            if($("#email1").val() != code ){
+                alert("验证码输入不正确！");
+                return;
+            }
+        }
+        $.post("toLogin", {username: $("#username").val(),password: $("#password").val()}, function (result) {
+           if(!result){
+               alert("账号或密码错误！");
+           }else{
+               window.location.href="/file/listFiles"
+           }
+        });
+    }
+</script>
+</html>
